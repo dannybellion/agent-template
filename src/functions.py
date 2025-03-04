@@ -1,4 +1,5 @@
 from openai import AsyncAzureOpenAI
+from pydantic_ai.models.openai import OpenAIModel
 import os
 from jinja2 import Template
 
@@ -21,7 +22,18 @@ def load_context():
     return context.strip()
 
 
-def load_prompt(context: str):
+def load_prompt(**kwargs):
     with open("prompt/prompt.j2", "r") as f:
         template = Template(f.read())
-        return template.render(context=context)
+        return template.render(**kwargs)
+
+
+def get_model(model_name):
+    return OpenAIModel(
+        model_name,
+        openai_client=AsyncAzureOpenAI(
+            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+            api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+            api_key=os.getenv("AZURE_OPENAI_KEY"),
+        ),
+    )

@@ -2,3 +2,5 @@ openai
 pydantic-ai
 ipykernel
 jinja2
+snowflake-connector-python
+hubspot
