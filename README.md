@@ -22,8 +22,7 @@ This template application:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd sales-attribution-agent
+git clone https://github.com/dannybellion/agent-template
 ```
 
 ### 2. Set Up a Virtual Environment
